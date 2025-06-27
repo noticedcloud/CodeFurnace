@@ -1,7 +1,7 @@
-/Src/build/
-/Src/dist/
-Src/**/*.jpg
-Src/**/*.png
-Src/**/*.txt
-Src/**/__pycache__
+/src/build/
+/src/dist/
+/src/**/*.jpg
+/src/**/*.png
+/src/**/*.txt
+/src/**/__pycache__
 .idea/
