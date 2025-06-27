@@ -1,0 +1,9 @@
+colorama==0.4.6
+GPUtil==1.4.0
+keyboard==0.13.5
+opencv-python==4.10.0.84
+Pillow==11.2.1
+psutil==5.9.8
+pyinstaller==6.14.1
+pyreadline3; sys_platform == "win32"
+readline; sys_platform != "win32"

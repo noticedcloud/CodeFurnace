@@ -1,0 +1,7 @@
+/Src/build/
+/Src/dist/
+Src/**/*.jpg
+Src/**/*.png
+Src/**/*.txt
+Src/**/__pycache__
+.idea/
