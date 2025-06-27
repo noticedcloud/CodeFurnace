@@ -22,20 +22,23 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 """
 
+from typing import Any  # TODO: replace `Any` with proper types
+
+
 class Template:
     def __init__(self) -> None:
         commands: dict = {}
 
-    def exec(self, command) -> any:
+    def exec(self, command: Any) -> any:
         pass
     
-    def set(self, *args, **kwargs) -> None:
+    def set(self, *args: Any, **kwargs: Any) -> None:
         pass
     
-    def payload_gen(self, command) -> None:
+    def payload_gen(self, command: Any) -> None:
         pass
     
-    def get_payload(self, payload) -> None:
+    def get_payload(self, payload: Any) -> None:
         pass
     
     def options(self) -> None:
