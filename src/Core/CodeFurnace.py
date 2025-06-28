@@ -1,5 +1,5 @@
-import os
 import importlib
+import os
 
 try:
     import readline
@@ -12,12 +12,15 @@ except ImportError:
 from Lib.Debugger import info, warning, error
 from Lib.Template import Template
 
+from typing import Optional, List
+
+
 class CodeFurnace:
     def __init__(self) -> None:
-        self.exploit: Template = None
-        self.input: str = "CodeFurnace >> "
-        self.exploits_list = []
-        self.payloads_list = []
+        self.exploit: Optional[Template] = None
+        self.input = "CodeFurnace >> "
+        self.exploits_list: List[str] = []
+        self.payloads_list: List[str] = []
         self.HISTORY_FILE = "history.txt"
         
         if readline:
@@ -28,17 +31,17 @@ class CodeFurnace:
             if os.path.exists(self.HISTORY_FILE):
                 readline.read_history_file(self.HISTORY_FILE)
     
-    def save_history(self):
+    def save_history(self) -> None:
         readline.write_history_file(self.HISTORY_FILE)
 
-    def complete(self, text, state):
+    def complete(self, text: str, state: int) -> None:
         buffer = readline.get_line_buffer()
         line = buffer.strip().split()
 
-        completions = []
-        exploit_commands = []
+        completions: List[str] = []
+        exploit_commands: List[str] = []
 
-        if self.exploit != None:
+        if self.exploit is not None:
             exploit_commands = list(self.exploit.commands.keys())
 
         if not line:
@@ -50,7 +53,7 @@ class CodeFurnace:
             options = ["options", "exploits", "payloads"]
             completions = [o for o in options if o.startswith(text)]
         elif line[0] == "set":
-            if self.exploit:
+            if self.exploit is not None:
                 try:
                     opts = list(self.exploit.get_options().keys())
                     if len(line) >= 2 and line[1].lower() == "payload":
@@ -61,14 +64,16 @@ class CodeFurnace:
                     pass
 
         else:
-            completions = [cmd for cmd in ["use", "set", "show", "quit", "help"] + exploit_commands
-               if cmd.lower().startswith(text.lower())]
+            completions = [
+                cmd for cmd in ["use", "set", "show", "quit", "help"] + exploit_commands
+                if cmd.lower().startswith(text.lower())
+            ]
 
         return completions[state] if state < len(completions) else None
 
     def print_items(self, directory: str) -> None:
         for root, dirs, files in os.walk(directory):
-            dirs[:] = [d for d in dirs if d != '__pycache__' and not d.startswith(".")]
+            dirs = [d for d in dirs if d != '__pycache__' and not d.startswith(".")]
             for file in files:
                 if not file.endswith(".py"):
                     continue
@@ -76,7 +81,7 @@ class CodeFurnace:
                 path = rel_path.replace("\\", "/").replace(".py", "")
                 print(path)
 
-    def load_exploits_list(self):
+    def load_exploits_list(self) -> None:
         self.exploits_list.clear()
         for root, dirs, files in os.walk("Server/Exploits"):
             dirs[:] = [d for d in dirs if d != '__pycache__' and not d.startswith(".")]
@@ -86,7 +91,7 @@ class CodeFurnace:
                     path = rel_path.replace("\\", "/").replace(".py", "")
                     self.exploits_list.append(path)
 
-    def load_payloads_list(self):
+    def load_payloads_list(self) -> None:
         self.payloads_list.clear()
         for root, dirs, files in os.walk("Server/Payloads"):
             dirs[:] = [d for d in dirs if d != '__pycache__' and not d.startswith(".")]
@@ -114,7 +119,7 @@ class CodeFurnace:
             return False
 
     def options(self) -> None:
-        if self.exploit != None:
+        if self.exploit is not None:
             self.exploit.options()
         else:
             warning("Please specify an exploit")
@@ -122,14 +127,14 @@ class CodeFurnace:
     def set(self, *args) -> None:
         self.exploit.set(args[0])
     
-    def check_read_line(self):
+    def check_read_line(self) -> None:
         global readline
 
         if readline is None:
             warning("Install readline, for better experience.")
-            option = input("Do you want to install it automatically (S/n)? ").lower()
+            option = input("Do you want to install it automatically (Y/n)? ").lower()
 
-            if option != "n":
+            if not option or option.startswith('y'):
                 lib_import = "pyreadline3" if os.name == "nt" else "readline"
                 os.system(f"pip install {lib_import}")
 
@@ -152,7 +157,7 @@ class CodeFurnace:
                 if os.path.exists(self.HISTORY_FILE):
                     readline.read_history_file(self.HISTORY_FILE)
     
-    def _do_help(self):
+    def _do_help(self) -> None:
         exploit_commands = ""
 
         if self.exploit:
@@ -169,19 +174,19 @@ show payloads: show all the payloads
 
     def execute(self, command: str) -> None:
         if command.startswith("use"):
-            exploit: str = command.split()[1]
-            result: bool = self.use(exploit)
+            exploit = command.split()[1]
+            result = self.use(exploit)
 
             if result:
-                self.input: str = f"CodeFurnace exploit(\033[91m{exploit}\033[0m) >> "
+                self.input = f"CodeFurnace exploit(\033[91m{exploit}\033[0m) >> "
             else:
                 error("Exploit not found")
         elif command.startswith("set"):
-            if self.exploit == None:
+            if self.exploit is None:
                 error("Please specify an exploit before")
             else:
-                action: str = command.split()[1]
-                content: str = command.split()[2]
+                action = command.split()[1]
+                content = command.split()[2]
                 self.set({f"{action.lower()}": f"{content}"})
         elif command.startswith("show"):
             subcmds = command.split()
@@ -192,7 +197,7 @@ show payloads: show all the payloads
             sub = subcmds[1].lower()
 
             if sub == "options":
-                if self.exploit:
+                if self.exploit is not None:
                     self.options()
                 else:
                     error("You must specify an exploit before")
@@ -225,7 +230,7 @@ show payloads: show all the payloads
 
         while True:
             try:
-                command: str = input(self.input).strip()
+                command = input(self.input).strip()
 
                 if command == "quit":
                     info("Closing the app...")
@@ -234,6 +239,6 @@ show payloads: show all the payloads
 
                 self.execute(command)
             except KeyboardInterrupt:
-                print("")
+                print()
             finally:
                 self.save_history()
