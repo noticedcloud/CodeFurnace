@@ -5,3 +5,4 @@ Src/**/*.png
 Src/**/*.txt
 Src/**/__pycache__
 .idea/
+.venv/

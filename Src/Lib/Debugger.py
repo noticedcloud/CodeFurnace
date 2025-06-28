@@ -25,17 +25,17 @@ SOFTWARE.
 from datetime import datetime
 
 def error(*msg) -> None:
-    time: datetime = datetime.now()
+    time = datetime.now()
     print(F"[ \033[91mERROR\033[0m | \033[36m{time.hour}:{time.minute}:{time.second}\033[0m ]", *msg)
 
 def warning(*msg) -> None:
-    time: datetime = datetime.now()
+    time = datetime.now()
     print(F"[ \033[93mWARNING\033[0m | \033[36m{time.hour}:{time.minute}:{time.second}\033[0m ]", *msg)
 
 def Debug(*msg) -> None:
-    time: datetime = datetime.now()
+    time = datetime.now()
     print(F"[ \033[92mDEBUG\033[0m | \033[36m{time.hour}:{time.minute}:{time.second}\033[0m ]", *msg)
 
 def info(*msg) -> None:
-    time: datetime = datetime.now()
+    time = datetime.now()
     print(F"[ \033[36mINFO\033[0m | \033[36m{time.hour}:{time.minute}:{time.second}\033[0m ]", *msg)

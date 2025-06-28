@@ -73,3 +73,11 @@
 
 ### ✏️ Changes in [`cmrconsole.py`](Src/cmrconsole.py)
 - Removed the `CodeFurnace` class.
+
+## 27/06/2025 - v0.7.3
+
+### ✏️ Changes in [`CodeFurnace.py`](Src/Core/CodeFurnace.py)
+- Improved help command with clearer, color-coded output and dynamic exploit commands display.
+
+### ✏️ Changes in [`NCEXP.py`](Src/Exploits/NoticedCloud/NCEXP.py)
+- Improved `options` function output with better formatting and aligned columns for readability.
