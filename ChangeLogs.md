@@ -82,7 +82,7 @@
 ### ✏️ Changes in [`NCEXP.py`](Src/Exploits/NoticedCloud/NCEXP.py)
 - Improved `options` function output with better formatting and aligned columns for readability.
 
-## 27/06/2025 - v0.7.2
+## 16/07/2025 - v0.7.4
 
 ### 🆕 Added
 - Introduced [`__init__.py`](Src/Core/__init__.py).
