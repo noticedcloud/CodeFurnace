@@ -81,3 +81,24 @@
 
 ### ✏️ Changes in [`NCEXP.py`](Src/Exploits/NoticedCloud/NCEXP.py)
 - Improved `options` function output with better formatting and aligned columns for readability.
+
+## 27/06/2025 - v0.7.2
+
+### 🆕 Added
+- Introduced [`__init__.py`](Src/Core/__init__.py).
+- Introduced [`BaseShell.py`](Src/Core/BaseShell.py).
+- Introduced [`HistoryManager.py`](Src/Core/HistoryManager.py).
+- Introduced [`ModuleLoader.py`](Src/Core/ModuleLoader.py).
+- Introduced [`Printer.py`](Src/Core/Printer.py).
+
+### 🚚 Moved
+- Moved the `complete`, `check_read_line`, `_do_help` and `execute` functions from [`CodeFurnace.py`](Src/Core/CodeFurnace.py) to [`BaseShell.py`](Src/Core/BaseShell.py) to improve code structure.
+- Moved the `save_history` function from [`CodeFurnace.py`](Src/Core/CodeFurnace.py) to [`HistoryManager.py`](Src/Core/HistoryManager.py) to improve code structure.
+- Moved the `use`, `set`, `load_exploits_list` and `load_payloads_list` functions from [`CodeFurnace.py`](Src/Core/CodeFurnace.py) to [`ModuleLoader.py`](Src/Core/ModuleLoader.py) to improve code structure.
+- Moved the `options` and `print_items` functions from [`CodeFurnace.py`](Src/Core/CodeFurnace.py) to [`Printer.py`](Src/Core/Printer.py) to improve code structure.
+
+### ✏️ Renamed
+- Renamed [`.NCEXP`](Src/Exploits/NoticedCloud/.NCEXP) -> [`_NCEXP`](Src/Exploits/NoticedCloud/_NCEXP).
+
+### ✏️ Changes in [`CodeFurnace.py`](Src/Core/CodeFurnace.py)
+- Removed all functions.

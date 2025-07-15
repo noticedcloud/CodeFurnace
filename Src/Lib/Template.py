@@ -35,13 +35,10 @@ class Template:
     def set(self, *args: Any, **kwargs: Any) -> None:
         pass
     
-    def payload_gen(self, command: Any) -> None:
-        pass
-    
-    def get_payload(self, payload: Any) -> None:
-        pass
-    
     def options(self) -> None:
+        pass
+
+    def get_options(self) -> dict:
         pass
 
     def exploit(self) -> None:
