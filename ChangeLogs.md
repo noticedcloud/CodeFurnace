@@ -82,7 +82,7 @@
 ### ✏️ Changes in [`NCEXP.py`](Src/Exploits/NoticedCloud/NCEXP.py)
 - Improved `options` function output with better formatting and aligned columns for readability.
 
-## 16/07/2025 - v0.7.4
+## 05/08/2025 - v1.0.0
 
 ### 🆕 Added
 - Introduced [`__init__.py`](Src/Core/__init__.py).
@@ -90,6 +90,7 @@
 - Introduced [`HistoryManager.py`](Src/Core/HistoryManager.py).
 - Introduced [`ModuleLoader.py`](Src/Core/ModuleLoader.py).
 - Introduced [`Printer.py`](Src/Core/Printer.py).
+- Introduced [`AIHandler.py`](Src/Core/AIHandler.py).
 
 ### 🚚 Moved
 - Moved the `complete`, `check_read_line`, `_do_help` and `execute` functions from [`CodeFurnace.py`](Src/Core/CodeFurnace.py) to [`BaseShell.py`](Src/Core/BaseShell.py) to improve code structure.
@@ -102,3 +103,7 @@
 
 ### ✏️ Changes in [`CodeFurnace.py`](Src/Core/CodeFurnace.py)
 - Removed all functions.
+
+### ✏️ Changes in [`BaseShell.py`](Src/Core/BaseShell.py)
+- Updated the `console` method to support multiple commands in a single input using `;` as a separator.
+- Added error handling to prevent crashes when executing invalid commands.

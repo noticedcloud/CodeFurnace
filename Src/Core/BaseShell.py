@@ -184,14 +184,24 @@ def console(self) -> None:
 
     while True:
         try:
-            command = input(self.input).strip()
+            commands = input(self.input).strip().split(";")
+            for command in commands:
+                command = command.strip()
+                if not command:
+                    continue
 
-            if command == "quit":
-                info("Closing the app...")
+                if command == "quit":
+                    info("Closing the app...")
+                    return
+                
+                if command.startswith("@"):
+                    self.handle_response(command[1:])
+                    break
 
-                break
-
-            self.execute(command)
+                try:
+                    self.execute(command)
+                except Exception as e:
+                    error(f"Errore comando '{command}': {e}")
         except KeyboardInterrupt:
             print()
         finally:

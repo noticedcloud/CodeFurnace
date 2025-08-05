@@ -3,6 +3,7 @@ from .HistoryManager import save_history
 from .ModuleLoader import use, set, load_exploits_list, load_payloads_list
 from .Printer import print_items, options
 from .CodeFurnace import CodeFurnace
+from .AIHandler import get_response, handle_response
 
 # BASE SHELL
 
@@ -27,3 +28,7 @@ CodeFurnace.load_payloads_list = load_payloads_list
 
 CodeFurnace.print_items = print_items
 CodeFurnace.options = options
+
+# AI HANDLER
+CodeFurnace.handle_response = handle_response
+CodeFurnace.get_response = get_response
