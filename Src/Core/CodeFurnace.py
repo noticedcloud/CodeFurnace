@@ -25,6 +25,7 @@ class CodeFurnace:
         self.original_path: str = os.getcwd()
         self.HISTORY_FILE: str = "history.txt"
         self.key = os.getenv("api_key")
+        
         if self.key:
             self.client = OpenAI(api_key=self.key, base_url=os.getenv("api_url"))
 
