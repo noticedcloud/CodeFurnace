@@ -99,7 +99,7 @@
 - Moved the `options` and `print_items` functions from [`CodeFurnace.py`](Src/Core/CodeFurnace.py) to [`Printer.py`](Src/Core/Printer.py) to improve code structure.
 
 ### ✏️ Renamed
-- Renamed [`.NCEXP`](Src/Exploits/NoticedCloud/.NCEXP) -> [`_NCEXP`](Src/Exploits/NoticedCloud/_NCEXP).
+- Renamed [`.NCEXP`](Src/Exploits/NoticedCloud/.NCEXP) -> [`_NCEXP`](Src/Exploits/NoticedCloud/_NCEXP)
 
 ### ✏️ Changes in [`CodeFurnace.py`](Src/Core/CodeFurnace.py)
 - Removed all functions.
@@ -107,3 +107,30 @@
 ### ✏️ Changes in [`BaseShell.py`](Src/Core/BaseShell.py)
 - Updated the `console` method to support multiple commands in a single input using `;` as a separator.
 - Added error handling to prevent crashes when executing invalid commands.
+
+## 02/01/2026 - v2.0.0
+
+### 🆕 Added
+- Introduced [`cert_gen.py`](src/cert_gen.py) for automatic self-signed certificate generation.
+- Integrated automated certificate generation into `CodeFurnace` startup.
+- Added `keylogger_stop` command to clients and server.
+
+### ✏️ Changes in [`NCEXP.py`](src/Server/Exploits/NoticedCloud/NCEXP.py) / [`AsyncServer.py`](src/Core/AsyncServer.py)
+- Implemented **TLS Encryption** for all secure communications.
+- Implemented **XOR Encryption** layer for command/response obfuscation.
+- Updated `AsyncServer` to support SSL/TLS listeners.
+- Added `screenshot` command support with encrypted binary protocol (Fixing large size errors).
+- Added `keylogger_dump` support with formatted output and file redirection.
+- Fixed critical syntax errors and removed duplicate method definitions.
+
+### ✏️ Changes in [`main.rs`](src/Client/Payloads/Rust/reverse_shell/src/main.rs)
+- Implemented **Certificate Pinning** (Embedded `server.crt`, removed reliance on system roots).
+- Implemented custom XOR encryption for all network traffic.
+- Fixed `handle_screenshot` to properly encrypt image length and data (Fixing "Protocol Error").
+- Fixed `main` loop syntax (missing closing brace).
+- Updated compilation dependencies (`rustls`, `image`, `rustls-pemfile`).
+- Fixed logic error in command matching (comparing plaintext vs plaintext).
+
+### 🗑️ Removed / Cleaned
+- **Removed all comments** from the entire codebase (`.py` and `.rs` files).
+- Removed build artifacts (`target/`, `__pycache__`, `kk.bin`, etc.) to clean repository.

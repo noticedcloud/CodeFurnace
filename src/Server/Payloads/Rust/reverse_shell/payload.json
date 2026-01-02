@@ -1,0 +1,9 @@
+{
+    "type": "stageless",
+    "build_command": "cd ../../../../Client/Payloads/Rust/reverse_shell && cargo build --release",
+    "output_file": "../../../../Client/Payloads/Rust/reverse_shell/target/release/reverse_shell",
+    "build_command_linux": "cd ../../../../Client/Payloads/Rust/reverse_shell && LHOST={{LHOST}} LPORT={{LPORT}} cargo build --release",
+    "output_file_linux": "../../../../Client/Payloads/Rust/reverse_shell/target/release/reverse_shell",
+    "build_command_windows": "cd ../../../../Client/Payloads/Rust/reverse_shell && set LHOST={{LHOST}} && set LPORT={{LPORT}} && cargo build --release",
+    "output_file_windows": "../../../../Client/Payloads/Rust/reverse_shell/target/release/reverse_shell.exe"
+}
