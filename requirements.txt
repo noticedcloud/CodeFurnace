@@ -1,0 +1,7 @@
+cryptography
+openai
+python-dotenv
+pyreadline3; sys_platform == 'win32'
+keyboard
+opencv-python
+Pillow

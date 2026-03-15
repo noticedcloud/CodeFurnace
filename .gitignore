@@ -1,0 +1,14 @@
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.env
+
+target/
+**/*.rs.bk
+
+.idea/
+.vscode/
+*.iml
+
+Client/Payloads/Rust/reverse_shell/target/
